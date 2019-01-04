@@ -238,7 +238,7 @@ class MigrateGenerateCommand extends GeneratorCommand {
 		$this->method = 'create';
 
 		foreach ( $tables as $table ) {
-			$this->table = $table;
+			$this->table = trim($table, '"');
 			$this->migrationName = 'create_'. $this->table .'_table';
 			$this->fields = $this->schemaGenerator->getFields( $this->table );
 
@@ -257,7 +257,7 @@ class MigrateGenerateCommand extends GeneratorCommand {
 		$this->method = 'table';
 
 		foreach ( $tables as $table ) {
-			$this->table = $table;
+			$this->table = trim($table, '"');
 			$this->migrationName = 'add_foreign_keys_to_'. $this->table .'_table';
 			$this->fields = $this->schemaGenerator->getForeignKeyConstraints( $this->table );
 
